@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Breeds - PetMatch</title>
+    <style>
+        :root { --primary: #3852A3; --accent: #FF3852; --sidebar-width: 250px; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #F4F8FB; margin: 0; display: flex; }
+        
+        #sidebar { width: var(--sidebar-width); height: 100vh; background: white; border-right: 1px solid #ddd; position: fixed; display: flex; flex-direction: column; padding: 20px 0; z-index: 1000; }
+        .logo { text-align: center; padding: 10px 0 20px 0; font-family: 'Verdana', sans-serif; font-weight: bold; font-size: 1.5rem; color: var(--primary); }
+        #sidebar ul { list-style: none; padding: 0; margin: 0; }
+        #sidebar ul li a { display: flex; align-items: center; padding: 15px 25px; text-decoration: none; color: #333; font-weight: 500; }
+        #sidebar ul li.active a { background: #f0f4ff; color: var(--primary); border-right: 4px solid var(--primary); }
+        .secondary-nav { margin-top: auto; border-top: 1px solid #eee; }
+
+        .main-content { margin-left: var(--sidebar-width); padding: 40px; width: 100%; }
+        .directory-header { border-bottom: 3px solid var(--primary); padding-bottom: 20px; margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <nav id="sidebar">
+        <div class="logo">PetMatch</div>
+        <ul>
+            <li><a href="index.html">HOMEPAGE</a></li>
+            <li class="active"><a href="DogBreed.html">DOG BREEDS</a></li>
+            <li><a href="CatBreed.html">CAT BREEDS</a></li>
+        </ul>
+        <ul class="secondary-nav">
+            <li><a href="About.html">ABOUT</a></li>
+        </ul>
+    </nav>
+    <div class="main-content">
+        <div class="directory-header">
+            <h1>Dog Breed Directory</h1>
+            <p>Explore detailed information about the world's most popular dog breeds.</p>
+        </div>
+        <div class="breed-container">
+            </div>
+    </div>
+</body>
+</html>
