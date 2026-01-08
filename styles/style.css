@@ -1,0 +1,97 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins%3Awght%40300%3B400%3B500%3B600%3B700&display=swap&fbclid=IwY2xjawKQ6vpleHRuA2FlbQIxMABicmlkETFJYnRYUUZpczFtZGNmbXUyAR4uOfVj2GTGvDsXTWE0rn18Ha4-q4Q2PFAeJv50xtmmHRMtmg50O2AysMev7A_aem_50ko54MG5vdoHF0Q24GZGQ);
+
+:root{
+    --sidebar: #fdfdfd;
+    --main: #F5F5F6;
+    --orenji: #F95E07;
+    --black: #000000;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-family: Poppins;
+    line-height: 1.5rem;
+}
+
+body{
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--main);
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+#sidebar{
+    box-sizing: border-box;
+    height: 100vh;
+    width: 250px;
+    padding: 5px 1em;
+    background-color: var(--sidebar);
+
+    position: sticky;
+    top: 0;
+    align-self: start;
+}
+
+#sidebar ul{
+    list-style: none;
+}
+
+#sidebar ul li a span{
+    font-size: 14px;
+}
+
+#sidebar ul li.active a svg path{
+    color: var(--black);   
+    stroke: var(--orenji);
+    
+}
+
+#sidebar ul li.active a {
+    outline: 1px solid var(--orenji);
+    border-radius: 6px;
+}
+
+#sidebar svg{
+    flex-shrink: 0;
+}
+
+#sidebar .logo{
+    margin-left: 16px;
+    margin-top: 25px;
+    margin-bottom: 16px;
+    
+}
+#sidebar .logo img{
+    width: 150px;
+    height: auto;
+}
+
+#sidebar a, #sidebar .logo{
+    border-radius: .5em;
+    padding: .85em;
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+}
+
+#sidebar a:hover{
+    outline: 1px solid var(--orenji);
+    border-radius: 6px;
+}
+
+#sidebar .secondary-nav {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    inset-inline: 0;
+    box-sizing: border-box;
+    padding: 0 1em; 
+}
