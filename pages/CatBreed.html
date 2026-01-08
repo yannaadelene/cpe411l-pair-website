@@ -5,33 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat Breeds - PetMatch</title>
     <style>
-        :root { --primary: #3852A3; --accent: #FF3852; --sidebar-width: 250px; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: #F4F8FB; margin: 0; display: flex; }
-        #sidebar { width: var(--sidebar-width); height: 100vh; background: white; border-right: 1px solid #ddd; position: fixed; display: flex; flex-direction: column; padding: 20px 0; z-index: 1000; }
-        .logo { text-align: center; padding: 10px 0 20px 0; font-family: 'Verdana', sans-serif; font-weight: bold; font-size: 1.5rem; color: var(--primary); }
+        :root {
+            --primary: #3852A3;
+            --accent: #FF3852;
+            --sidebar-width: 250px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #F4F8FB;
+            margin: 0;
+            display: flex;
+        }
+
+        /* --- MOBILE HEADER & HAMBURGER --- */
+        .mobile-header {
+            display: none;
+            align-items: center;
+            padding: 10px 15px;
+            background: white;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .hamburger span { 
+            height: 3px; 
+            width: 25px; 
+            background: var(--primary); 
+            margin: 2px 0; 
+            border-radius: 2px;
+        }
+
+        .mobile-logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            font-weight: bold; 
+            color: var(--primary); 
+            text-transform: uppercase;
+        }
+
+        /* --- SIDEBAR --- */
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #ddd;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        .logo { 
+            text-align: center; 
+            padding: 10px 0 20px 0; 
+            font-family: 'Verdana', Geneva, sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
         #sidebar ul { list-style: none; padding: 0; margin: 0; }
-        #sidebar ul li a { display: flex; align-items: center; padding: 15px 25px; text-decoration: none; color: #333; }
-        #sidebar ul li.active a { background: #f0f4ff; color: var(--primary); border-right: 4px solid var(--primary); }
+        #sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        /* --- ACTIVE INDICATOR --- */
+        #sidebar ul li.active a {
+            background: #f0f4ff;
+            color: var(--primary);
+            border-right: 4px solid var(--primary);
+            font-weight: 700;
+        }
+
+        #sidebar ul li a:hover { background: #f8faff; color: var(--primary); }
         .secondary-nav { margin-top: auto; border-top: 1px solid #eee; }
 
+        /* --- CONTENT STYLING --- */
         .main-content { margin-left: var(--sidebar-width); padding: 40px; width: 100%; }
-        .directory-header { border-bottom: 3px solid var(--primary); padding-bottom: 20px; margin-bottom: 40px; }
+        
+        .directory-header {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
         .directory-header h1 { color: var(--primary); font-size: 2.5rem; margin: 0; }
 
-        /* --- BREED CARD STYLING --- */
         .breed-container { display: flex; flex-direction: column; gap: 40px; max-width: 1000px; }
-        .breed-profile { display: flex; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #eee; }
+
+        .breed-profile {
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
         .breed-img { width: 350px; height: 350px; object-fit: cover; }
         .breed-details { padding: 30px; flex: 1; }
         .breed-details h2 { color: var(--primary); margin-top: 0; font-size: 1.8rem; }
-        .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #f8faff; padding: 15px; border-radius: 12px; margin: 20px 0; }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            background: #f8faff;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
         .spec-item { font-size: 0.9rem; color: #555; }
         .spec-item strong { color: var(--primary); display: block; margin-bottom: 2px; }
         .description { line-height: 1.7; color: #666; font-size: 1rem; }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 900px) {
+            .breed-profile { flex-direction: column; }
+            .breed-img { width: 100%; height: 250px; }
+            #sidebar { left: -250px; transition: 0.3s; }
+            #sidebar.active { left: 0; }
+            .mobile-header { display: flex; }
+            .main-content { margin-left: 0; padding: 20px; padding-top: 80px; }
+        }
     </style>
 </head>
 <body>
+<div class="mobile-header">
+        <div id="hamburger" class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="mobile-logo">
 
+            <span>PetMatch</span>
+        </div>
+    </div>
     <nav id="sidebar">
         <div class="logo">PetMatch</div>
         <ul>
@@ -47,7 +174,7 @@
     <div class="main-content">
         <div class="directory-header">
             <h1>Cat Breed Directory</h1>
-            <p>Explore detailed information about common cat breeds.</p>
+            <p>Explore detailed information about common cat breeds and their unique personalities.</p>
         </div>
 
         <div class="breed-container">
@@ -61,7 +188,7 @@
                         <div class="spec-item"><strong>Temperament</strong> Vocal, Affectionate</div>
                         <div class="spec-item"><strong>Coat</strong> Short, Silky</div>
                     </div>
-                    <p class="description">Siamese cats are among the most social and talkative cats. They thrive on human companionship.</p>
+                    <p class="description">Siamese cats are among the most social and talkative cats. They thrive on human companionship and are known for their striking blue eyes and point-colored coats.</p>
                 </div>
             </div>
 
@@ -75,10 +202,77 @@
                         <div class="spec-item"><strong>Temperament</strong> Gentle, Friendly</div>
                         <div class="spec-item"><strong>Coat</strong> Long, Shaggy</div>
                     </div>
-                    <p class="description">Known as the "gentle giant," the Maine Coon is one of the largest domesticated cat breeds.</p>
+                    <p class="description">Known as the "gentle giant," the Maine Coon is one of the largest domesticated cat breeds. They have a sturdy build and are famous for their bushy tails and tufted ears.</p>
+                </div>
+            </div>
+
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&q=80&w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>Persian</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 7 - 12 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 10 - 15 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Quiet, Sweet</div>
+                        <div class="spec-item"><strong>Coat</strong> Long, Luxurious</div>
+                    </div>
+                    <p class="description">Persians are famous for their round faces and long, flowing coats. They are quiet, docile cats that prefer calm environments and frequent grooming sessions.</p>
+                </div>
+            </div>
+
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>Bengal</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 8 - 15 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 12 - 16 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Active, Energetic</div>
+                        <div class="spec-item"><strong>Coat</strong> Spotted, Marbled</div>
+                    </div>
+                    <p class="description">Bengals are highly active and intelligent cats that look like wild leopards. They are very curious, love to climb, and are even known to enjoy playing in water.</p>
+                </div>
+            </div>
+
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>Ragdoll</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 10 - 20 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 12 - 17 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Placid, Docile</div>
+                        <div class="spec-item"><strong>Coat</strong> Semi-long, Soft</div>
+                    </div>
+                    <p class="description">Ragdolls get their name because they often go limp with relaxation when held. They are exceptionally calm and affectionate, often following their owners from room to room.</p>
+                </div>
+            </div>
+
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>British Shorthair</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 9 - 18 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 12 - 20 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Easygoing, Loyal</div>
+                        <div class="spec-item"><strong>Coat</strong> Short, Dense</div>
+                    </div>
+                    <p class="description">With their round faces and plush coats, British Shorthairs are a beloved breed. They are dignified and quiet, making them excellent companions for those who prefer a low-energy pet.</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        hamburger.addEventListener('click', () => { sidebar.classList.toggle('active'); });
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
