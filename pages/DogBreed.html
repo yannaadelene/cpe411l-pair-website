@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Breeds - PetMatch</title>
+    <style>
+        :root {
+            --primary: #3852A3;
+            --accent: #FF3852;
+            --sidebar-width: 250px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #F4F8FB;
+            margin: 0;
+            display: flex;
+        }
+
+        /* --- MOBILE HEADER --- */
+        .mobile-header {
+            display: none;
+            align-items: center;
+            padding: 10px 15px;
+            background: white;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .mobile-logo { 
+            display: flex; 
+            align-items: center; 
+            font-weight: bold; 
+            color: var(--primary); 
+            text-transform: uppercase;
+            font-family: 'Verdana', sans-serif;
+        }
+
+
+        /* --- SIDEBAR --- */
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #ddd;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        .logo { 
+            text-align: center; 
+            padding: 10px 0 20px 0; 
+            font-family: 'Verdana', Geneva, sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        #sidebar ul { list-style: none; padding: 0; margin: 0; }
+        #sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        /* --- ACTIVE INDICATOR --- */
+        #sidebar ul li.active a {
+            background: #f0f4ff;
+            color: var(--primary);
+            border-right: 4px solid var(--primary);
+            font-weight: 700;
+        }
+
+        #sidebar ul li a:hover {
+            background: #f8faff;
+            color: var(--primary);
+        }
+
+        .secondary-nav { margin-top: auto; border-top: 1px solid #eee; }
+
+        /* --- CONTENT STYLING --- */
+        .main-content { margin-left: var(--sidebar-width); padding: 40px; width: 100%; }
+        
+        .directory-header {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .directory-header h1 { color: var(--primary); font-size: 2.5rem; margin: 0; }
+
+        .breed-container { display: flex; flex-direction: column; gap: 40px; max-width: 1000px; }
+
+        .breed-profile {
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .breed-img { width: 350px; height: 350px; object-fit: cover; }
+        .breed-details { padding: 30px; flex: 1; }
+        .breed-details h2 { color: var(--primary); margin-top: 0; font-size: 1.8rem; }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            background: #f8faff;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .spec-item { font-size: 0.9rem; color: #555; }
+        .spec-item strong { color: var(--primary); display: block; margin-bottom: 2px; }
+        .description { line-height: 1.7; color: #666; font-size: 1rem; }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        .hamburger {
+            display: flex; flex-direction: column; cursor: pointer; margin-right: 15px;
+        }
+        .hamburger span { height: 3px; width: 25px; background: var(--primary); margin: 2px 0; border-radius: 2px; }
+
+        @media (max-width: 900px) {
+            .breed-profile { flex-direction: column; }
+            .breed-img { width: 100%; height: 250px; }
+            #sidebar { left: -250px; transition: 0.3s; }
+            #sidebar.active { left: 0; }
+            .mobile-header { display: flex; }
+            .main-content { margin-left: 0; padding: 20px; padding-top: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-header">
+        <div id="hamburger" class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="mobile-logo">
+
+            <span>PetMatch</span>
+        </div>
+    </div>
+    <nav id="sidebar">
+        <div class="logo">PetMatch</div>
+        <ul>
+            <li><a href="index.html">HOMEPAGE</a></li>
+            <li class="active"><a href="DogBreed.html">DOG BREEDS</a></li>
+            <li><a href="CatBreed.html">CAT BREEDS</a></li>
+        </ul>
+        <ul class="secondary-nav">
+            <li><a href="About.html">ABOUT</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="directory-header">
+            <h1>Dog Breed Directory</h1>
+            <p>Explore detailed information about the world's most popular dog breeds.</p>
+        </div>
+
+        <div class="breed-container">
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>Golden Retriever</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 55 - 75 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 10 - 12 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Devoted, Friendly</div>
+                        <div class="spec-item"><strong>Activity</strong> Very Active</div>
+                    </div>
+                    <p class="description">Golden Retrievers are serious workers at hunting and field work, as guides for the blind, and in search-and-rescue, enjoy obedience and other competitive events, and have an endearing love of life when not at work.</p>
+                </div>
+            </div>
+
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>German Shepherd</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 50 - 90 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 7 - 10 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Brave, Intelligent</div>
+                        <div class="spec-item"><strong>Activity</strong> High Energy</div>
+                    </div>
+                    <p class="description">German Shepherd Dogs are energetic and fun-loving, and they are also very fond of children once a relationship is established. They are a loyal and protective breed, often used in police and military roles.</p>
+                </div>
+            </div>
+
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>Beagle</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 20 - 30 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 12 - 15 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Amiable, Curious</div>
+                        <div class="spec-item"><strong>Activity</strong> Moderate</div>
+                    </div>
+                    <p class="description">There are two beagle varieties: those standing under 13 inches at the shoulder, and those between 13 and 15 inches. Both varieties are sturdy, solid, and "big for their inches."</p>
+                </div>
+            </div>
+
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>Bulldog</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 40 - 50 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 8 - 10 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Docile, Willful</div>
+                        <div class="spec-item"><strong>Activity</strong> Low</div>
+                    </div>
+                    <p class="description">Kind but courageous, friendly but dignified, the Bulldog is a thick-set, low-slung, well-muscled bruiser whose "sourmug" face is the universal symbol of courage and tenacity.</p>
+                </div>
+            </div>
+
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>Poodle</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 45 - 70 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 10 - 18 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Alert, Instinctive</div>
+                        <div class="spec-item"><strong>Activity</strong> High</div>
+                    </div>
+                    <p class="description">Whether Standard, Miniature, or Toy, the Poodle is one of the most intelligent and versatile breeds. They are eager to please and easily trained, making them favorites in dog shows.</p>
+                </div>
+            </div>
+
+            <div class="breed-profile">
+                <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=500" class="breed-img">
+                <div class="breed-details">
+                    <h2>Labrador</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item"><strong>Weight</strong> 55 - 80 lbs</div>
+                        <div class="spec-item"><strong>Life Span</strong> 10 - 12 Years</div>
+                        <div class="spec-item"><strong>Temperament</strong> Kind, Outgoing</div>
+                        <div class="spec-item"><strong>Activity</strong> High</div>
+                    </div>
+                    <p class="description">The sweet-faced, lovable Labrador Retriever is America's most popular dog breed. Labs are friendly, outgoing, and high-spirited companions who have more than enough affection to go around.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        hamburger.addEventListener('click', () => { sidebar.classList.toggle('active'); });
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
