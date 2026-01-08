@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetMatch - Home</title>
+    <style>
+        :root {
+            --primary: #3852A3;
+            --accent: #FF3852;
+            --sidebar-width: 250px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #F4F8FB;
+            margin: 0;
+            display: flex;
+        }
+
+        /* --- SIDEBAR & NAV --- */
+        #sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #ddd;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+
+        .logo { 
+            text-align: center; 
+            padding: 10px 0 20px 0; 
+            font-family: 'Verdana', Geneva, sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        #sidebar ul { list-style: none; padding: 0; margin: 0; }
+        #sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        #sidebar ul li a:hover, #sidebar ul li.active a {
+            background: #f0f4ff;
+            color: var(--primary);
+            border-right: 4px solid var(--primary);
+        }
+
+        .secondary-nav { margin-top: auto; border-top: 1px solid #eee; }
+
+        /* --- CONTENT & GRID --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: 100%;
+        }
+
+        .main-title {
+            color: var(--primary); /* Blue Title */
+            font-family: 'Verdana', sans-serif;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .intro-text {
+            color: black; 
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            opacity: 0.9;
+        }
+
+        .section-title {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            margin: 40px 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+        }
+
+        .section-title:first-child { margin-top: 0; }
+
+        .pet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .pet-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .pet-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .pet-card img { width: 100%; height: 180px; object-fit: cover; }
+
+        .pet-info { padding: 15px; }
+        .pet-info h4 { margin: 0; color: var(--primary); font-size: 1.2rem; }
+        .pet-info p { margin: 5px 0; font-size: 0.9rem; color: #666; }
+        
+        .personality-tag {
+            display: inline-block;
+            background: #ffe5e9;
+            color: var(--accent);
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* --- MOBILE HEADER & HAMBURGER --- */
+        .mobile-header {
+            display: none;
+            align-items: center;
+            padding: 10px 15px;
+            background: white;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hamburger { display: flex; flex-direction: column; cursor: pointer; margin-right: 15px; }
+        .hamburger span { height: 3px; width: 25px; background: var(--primary); margin: 2px 0; border-radius: 2px; }
+
+        .mobile-logo { 
+            display: flex; 
+            align-items: center; 
+            font-weight: bold; 
+            color: var(--primary); 
+            text-transform: uppercase;
+            font-family: 'Verdana', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            #sidebar { left: -250px; transition: 0.3s; }
+            #sidebar.active { left: 0; }
+            .mobile-header { display: flex; }
+            .main-content { margin-left: 0; padding: 20px; padding-top: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-header">
+        <div id="hamburger" class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="mobile-logo">
+            <span>PetMatch</span>
+        </div>
+    </div>
+
+    <nav id="sidebar">
+        <div class="logo">PetMatch</div>
+        <ul>
+            <li class="active"><a href="index.html">HOMEPAGE</a></li>
+            <li><a href="DogBreed.html">DOG BREEDS</a></li>
+            <li><a href="CatBreed.html">CAT BREEDS</a></li>
+        </ul>
+        <ul class="secondary-nav">
+            <li><a href="About.html">ABOUT</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <header class="home-intro">
+            <h1 class="main-title">Welcome to PetMatch</h1>
+            <p class="intro-text">
+                Discovering your new best friend has never been easier. 
+                Whether you're looking for a high-energy running partner or a calm companion for quiet evenings, 
+                our curated list of featured pets helps you find the perfect match for your lifestyle. 
+                Explore our featured dogs and cats below!
+            </p>
+        </header>   
+        <h2 class="section-title">DOGS 🐕</h2>
+        <div class="pet-grid">
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=300" alt="Dog">
+                <div class="pet-info">
+                    <h4>Goldie</h4>
+                    <p><strong>Breed:</strong> Golden Retriever</p>
+                    <p>Loyal, kind, and great with kids.</p>
+                    <span class="personality-tag">Friendly</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=300" alt="Dog">
+                <div class="pet-info">
+                    <h4>Rex</h4>
+                    <p><strong>Breed:</strong> German Shepherd</p>
+                    <p>Confident, brave, and smart.</p>
+                    <span class="personality-tag">Protective</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=300" alt="Dog">
+                <div class="pet-info">
+                    <h4>Bella</h4>
+                    <p><strong>Breed:</strong> Beagle</p>
+                    <p>Merry, curious, and energetic.</p>
+                    <span class="personality-tag">Playful</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300" alt="Dog">
+                <div class="pet-info">
+                    <h4>Cooper</h4>
+                    <p><strong>Breed:</strong> Bulldog</p>
+                    <p>Calm, courageous, and friendly.</p>
+                    <span class="personality-tag">Chill</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=300" alt="Dog">
+                <div class="pet-info">
+                    <h4>Milo</h4>
+                    <p><strong>Breed:</strong> Poodle</p>
+                    <p>Active, proud, and very smart.</p>
+                    <span class="personality-tag">Intelligent</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=300" alt="Dog">
+                <div class="pet-info">
+                    <h4>Daisy</h4>
+                    <p><strong>Breed:</strong> Labrador</p>
+                    <p>Outgoing, even-tempered, and gentle.</p>
+                    <span class="personality-tag">Loving</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">CATS 🐈</h2>
+        <div class="pet-grid">
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300" alt="Cat">
+                <div class="pet-info">
+                    <h4>Luna</h4>
+                    <p><strong>Breed:</strong> Siamese</p>
+                    <p>Social, talkative, and affectionate.</p>
+                    <span class="personality-tag">Sociable</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=300" alt="Cat">
+                <div class="pet-info">
+                    <h4>Oliver</h4>
+                    <p><strong>Breed:</strong> Maine Coon</p>
+                    <p>Gentle giant, friendly, and playful.</p>
+                    <span class="personality-tag">Gentle</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&q=80&w=500" alt="Cat">
+                <div class="pet-info">
+                    <h4>Chloe</h4>
+                    <p><strong>Breed:</strong> Persian</p>
+                    <p>Quiet, sweet, and loves lounging.</p>
+                    <span class="personality-tag">Calm</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?w=300" alt="Cat">
+                <div class="pet-info">
+                    <h4>Leo</h4>
+                    <p><strong>Breed:</strong> Bengal</p>
+                    <p>Highly active, confident, and wild-looking.</p>
+                    <span class="personality-tag">Active</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=300" alt="Cat">
+                <div class="pet-info">
+                    <h4>Simba</h4>
+                    <p><strong>Breed:</strong> Ragdoll</p>
+                    <p>Docile, placid, and very affectionate.</p>
+                    <span class="personality-tag">Cuddly</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=300" alt="Cat">
+                <div class="pet-info">
+                    <h4>Lucy</h4>
+                    <p><strong>Breed:</strong> British Shorthair</p>
+                    <p>Easygoing, dignified, and calm.</p>
+                    <span class="personality-tag">Independent</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        hamburger.addEventListener('click', () => { sidebar.classList.toggle('active'); });
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
